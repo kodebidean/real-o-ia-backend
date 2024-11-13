@@ -1,3 +1,6 @@
+
+
+
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
@@ -14,8 +17,11 @@ app.use(express.json());
 // Conectar a MongoDB
 connectDB();
 
-// Definir rutas (aquí puedes añadir tus rutas de puntuaciones, autenticación, etc.)
-// app.use('/api/scores', require('./routes/scoreRoutes'));
+// Rutas
+app.use('/api/auth', require('./routes/authRoutes'));
+
+// Rutas de puntuación protegidas
+app.use('/api/scores', require('./routes/scoreRoutes'));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
